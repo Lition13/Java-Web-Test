@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+  
+  <struts>
+     
+     <!-- 系统模块 -->
+     <package name="sysPack" extends="defaultPack" namespace="/sys" strict-method-invocation="false">
+     	
+         <action name="user_*" class="com.lition.action.UserAction" method="{1}">
+            <result name="add" >/WEB-INF/user/userUpdate.jsp</result>
+            <result name="success" >/WEB-INF/user/user.jsp</result>
+             <result name="query" type="redirectAction">user_query</result>
+         </action>
+         
+         <action name="role_*" class="com.lition.action.RoleAction" method="{1}">
+            <result name="add" >/WEB-INF/role/roleUpdate.jsp</result>
+            <result name="success" >/WEB-INF/role/role.jsp</result>
+             <result name="query" type="redirectAction">role_query</result>
+         </action>
+         
+         <action name="menu_*" class="com.lition.action.MenuAction" method="{1}">
+            <result name="add" >/WEB-INF/menu/menuUpdate.jsp</result>
+            <result name="success" >/WEB-INF/menu/menu.jsp</result>
+             <result name="query" type="redirectAction">menu_query</result>
+         </action>
+        
+     </package>
+
+  </struts>  

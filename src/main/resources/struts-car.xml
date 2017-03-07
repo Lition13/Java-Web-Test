@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+  
+  <struts>
+     <!-- 业务模块 -->
+     <package name="carPack" extends="struts-default" namespace="/car" strict-method-invocation="false">
+         
+          <!-- 用户 --> 
+         <action name="owned_*" class="com.lition.action.OwnedAction" method="{1}">
+            <result name="add" >/WEB-INF/owned/ownedUpdate.jsp</result>
+            <result name="success" >/WEB-INF/owned/owned.jsp</result>
+            <result name="query" type="redirectAction">owned_query</result>
+            <result name="download" type="stream">
+            	<!--设置下载的类型  application/octet-stream 表示支持任意下载类型-->
+				<param name="contentType">application/octet-stream</param>
+				<!-- 设置下载的入口 -->
+				<param name="inputName">inputStream</param>
+				<!-- 设置下载打开的方式 支持通过ＥＬ表达式获取文件名称-->
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+            </result> 
+         </action>
+         
+         <action name="app_*" class="com.lition.action.VehicleApplicationAction" method="{1}">
+             <result name="list" >/WEB-INF/app/applist.jsp</result>
+             <result name="dispatchlist" >/WEB-INF/app/dispatchlist.jsp</result>
+            <result name="success" >/WEB-INF/app/app.jsp</result>
+             <result name="choiceCar" >/WEB-INF/app/choiceCar.jsp</result>
+             <result name="query" type="redirectAction">app_query?state=${state}</result>
+         </action>
+         
+         <action name="reg_*" class="com.lition.action.VehicleRegisterAction" method="{1}">
+             <result name="list" >/WEB-INF/app/applist.jsp</result>
+             <result name="dispatchlist" >/WEB-INF/app/dispatchlist.jsp</result>
+            <result name="success" >/WEB-INF/app/app.jsp</result>
+             <result name="choiceCar" >/WEB-INF/app/choiceCar.jsp</result>
+             <result name="query" type="redirectAction">app_dispatch</result>
+         </action>
+         
+        
+     </package>
+
+
+  </struts>  

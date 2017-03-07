@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+  
+  <struts>
+     
+     <constant name="struts.configuration.xml.reload" value="true"></constant>
+     
+     <package name="login" namespace="/" extends="struts-default" strict-method-invocation="false">
+     
+     	<action name="login_*" class="com.lition.action.LoginAction" method="{1}">
+     		<result name="home">/WEB-INF/home.jsp</result>
+     		<result name="login">/login.jsp</result>
+     	</action>
+     	
+     </package>
+     
+     <package name="defaultPack" extends="struts-default" namespace="/" strict-method-invocation="false">
+     	 <!-- 注册拦截器 -->
+         <interceptors>
+         	<interceptor name="securityInterceptor" class="com.lition.interceptor.SecurityInterceptor"></interceptor>
+         	<!-- 定义一个拦截器栈 -->
+         	<interceptor-stack name="myInterceptor">
+         		<interceptor-ref name="securityInterceptor"></interceptor-ref>
+         		<interceptor-ref name="defaultStack"></interceptor-ref>
+         	</interceptor-stack>
+         </interceptors>
+         <!-- 定义一个全局的拦截器 -->
+         <default-interceptor-ref name="myInterceptor"></default-interceptor-ref>
+     </package>
+     
+     
+     <include file="struts-sys.xml"></include>
+     <include file="struts-car.xml"></include>
+
+
+  </struts>  
